@@ -10,11 +10,7 @@
 
 <ul>
   <li *ngFor="let todoItem of todoList">
-    <input
-      type="checkbox"
-      [(ngModel)]="todoItem.completed"
-      (change)="toggleCompleted(todoItem.id)"
-    />
+    <input type="checkbox" (change)="toggleCompleted(todoItem.id)" />
     <span [class.completed]="todoItem.completed">{{ todoItem.title }}</span>
     <button (click)="deleteTask(todoItem.id)">Delete</button>
   </li>
