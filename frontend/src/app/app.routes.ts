@@ -3,5 +3,5 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 
 export const routes: Routes = [
   // { path: 'signup', component: SignupComponent },
-  { path: '/', component: TodoListComponent },
+  //{ path: '/', component: TodoListComponent },
 ];
