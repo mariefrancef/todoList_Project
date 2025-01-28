@@ -1,0 +1,20 @@
+.filter-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+button {
+  padding: 5px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #8dc2a1;
+  color: white;
+}
+
+button.active {
+  background-color: #4c9a74;
+  font-weight: bold;
+}

@@ -3,11 +3,12 @@ import { TodoService } from '../../services/todo.service';
 import { Todo } from '../../../../../src/models/todoModels';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TodoFilterComponent } from '../todo-filter/todo-filter.component';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TodoFilterComponent],
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
 })
@@ -75,6 +76,20 @@ export class TodoListComponent implements OnInit {
       this.todoService.updateTodo(todoItem.id, todoItem).subscribe(() => {
         todoItem.isEditing = false; // Désactive le mode édition après la sauvegarde
       });
+    }
+  }
+
+  applyFilter(filter: string): void {
+    switch (filter) {
+      case 'completed':
+        this.todoList = this.todoList.filter((todo) => todo.completed);
+        break;
+      case 'in-progress':
+        this.todoList = this.todoList.filter((todo) => !todo.completed);
+        break;
+      default:
+        this.getTodos(); // Réinitialise pour afficher toutes les tâches
+        break;
     }
   }
 }
