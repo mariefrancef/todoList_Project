@@ -2,10 +2,13 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "outDir": "dist", // Le dossier où ton code compilé ira
+    "rootDir": "src", // Le dossier source de ton code
     "strict": true,
     "esModuleInterop": true
   },
-  "exclude": ["node_modules", "dist", "frontend/**/*"]
+  "include": [
+    "src/**/*.ts" // Indique à TypeScript de compiler tous les fichiers .ts dans src
+  ],
+  "exclude": ["node_modules"]
 }

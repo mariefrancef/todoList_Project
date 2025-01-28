@@ -8,3 +8,5 @@
 4. node dist/index.js : Exécuter le fichier compilé 
 
   SERVER RUNNING
+
+  sinon juste faire : npm run dev

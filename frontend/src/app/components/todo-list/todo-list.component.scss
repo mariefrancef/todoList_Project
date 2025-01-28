@@ -1,5 +1,9 @@
 div {
   margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
@@ -11,12 +15,82 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background-color: #8dc2a1;
+}
+
 input {
   padding: 5px;
   width: 200px;
+  margin-bottom: 10px;
+}
+
+input#todoDescription {
+  padding: 10px;
+  width: 300px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  text-align: center;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+span p {
+  max-width: 300px; /* Limiter la largeur */
+  height: 60px; /* Fixer la hauteur */
+  overflow-y: auto; /* Ajouter un scroll si nécessaire */
+  white-space: normal; /* Permet aux lignes de se casser */
+  text-overflow: ellipsis; /* Ajoute des "..." si le texte dépasse */
+  margin: 0;
 }
 
 .completed {
   text-decoration: line-through;
   color: gray;
+}
+
+.checkbox-container {
+  position: relative;
+  display: inline-block;
+}
+
+.checkbox-title {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+  font-style: italic;
+}
+
+input[type="checkbox"] {
+  margin-top: 20px;
+}
+
+.todo-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+textarea {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px;
+  width: 300px;
+  height: 100px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }

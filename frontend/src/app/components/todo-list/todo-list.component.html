@@ -1,17 +1,45 @@
 <div>
   <input
     type="text"
-    #todoText
-    placeholder="Add a new task"
-    (keyup.enter)="addTask(todoText.value)"
+    [(ngModel)]="todoTitle"
+    placeholder="Enter task title"
+    (keyup.enter)="addTask(todoTitle, todoDescription)"
   />
-  <button (click)="addTask(todoText.value)">Add</button>
+  <input
+    type="text"
+    id="todoDescription"
+    [(ngModel)]="todoDescription"
+    placeholder="Enter task description"
+    (keyup.enter)="addTask(todoTitle, todoDescription)"
+  />
+  <button (click)="addTask(todoTitle, todoDescription)">Add</button>
 </div>
 
-<ul>
-  <li *ngFor="let todoItem of todoList">
-    <input type="checkbox" (change)="toggleCompleted(todoItem.id)" />
-    <span [class.completed]="todoItem.completed">{{ todoItem.title }}</span>
-    <button (click)="deleteTask(todoItem.id)">Delete</button>
-  </li>
-</ul>
+<div>
+  <ul>
+    <li *ngFor="let todoItem of todoList">
+      <div class="checkbox-container">
+        <div *ngIf="!todoItem.completed" class="checkbox-title">
+          <small>Check the box to mark as completed </small>
+        </div>
+        <input type="checkbox" (change)="toggleCompleted(todoItem.id)" />
+      </div>
+      <span [class.completed]="todoItem.completed"
+        ><h3>{{ todoItem.title }}</h3>
+        <p>{{ todoItem.description }}</p>
+      </span>
+      <button (click)="editTask(todoItem)">Edit</button>
+      <div *ngIf="todoItem.isEditing">
+        <input [(ngModel)]="todoItem.title" placeholder="Edit title" />
+        <textarea
+          [(ngModel)]="todoItem.description"
+          placeholder="Edit description"
+          rows="4"
+          cols="30"
+        ></textarea>
+        <button (click)="saveTask(todoItem)">Save</button>
+      </div>
+      <button (click)="deleteTask(todoItem.id)">Delete</button>
+    </li>
+  </ul>
+</div>

@@ -2,17 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../services/todo.service';
 import { Todo } from '../../../../../src/models/todoModels';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit {
   todoList: Todo[] = [];
-  newTask: string = '';
+  todoTitle: string = '';
+  todoDescription: string = '';
 
   constructor(private todoService: TodoService) {}
 
@@ -32,17 +34,20 @@ export class TodoListComponent implements OnInit {
     );
   }
 
-  addTask(text: string): void {
-    if (text.trim() !== '') {
+  addTask(title: string, description: string): void {
+    if (title.trim() !== '' && description.trim() !== '') {
       const newTodoItem: Todo = {
         id: Date.now(),
-        title: text.trim(),
-        description: text.trim(),
+        title: title.trim(),
+        description: description.trim(),
         completed: false,
+        isEditing: false,
       };
 
       this.todoService.addTodo(newTodoItem).subscribe((todo) => {
         this.todoList.push(todo);
+        this.todoTitle = '';
+        this.todoDescription = '';
       });
     }
   }
@@ -58,6 +63,18 @@ export class TodoListComponent implements OnInit {
     if (todoItem) {
       todoItem.completed = !todoItem.completed;
       this.todoService.updateTodo(id, todoItem).subscribe();
+    }
+  }
+  editTask(todoItem: Todo): void {
+    todoItem.isEditing = true;
+  }
+
+  // Méthode pour sauvegarder les modifications
+  saveTask(todoItem: Todo): void {
+    if (todoItem.title.trim() !== '' && todoItem.description.trim() !== '') {
+      this.todoService.updateTodo(todoItem.id, todoItem).subscribe(() => {
+        todoItem.isEditing = false; // Désactive le mode édition après la sauvegarde
+      });
     }
   }
 }

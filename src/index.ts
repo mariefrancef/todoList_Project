@@ -1,9 +1,9 @@
 import express, { Request, Response } from "express";
 import bodyParser from "body-parser";
+import cors from "cors";
 import todoRoutes from "./routes/todoRoutes";
 
 const app = express();
-const cors = require("cors");
 const port = 3000;
 
 // Autoriser toutes les origines (ou spécifie localhost:4200 uniquement)
@@ -17,6 +17,11 @@ app.use(
 // Middleware pour analyser le corps de la requête (JSON)
 app.use(bodyParser.json());
 
+// Route de test
+app.get("/", (req: Request, res: Response) => {
+  res.send("Welcome to the Todo API!");
+});
+
 // Routes
 app.use("/todos", todoRoutes);
 
@@ -25,11 +30,6 @@ app.get("/todos", (req, res) => {
     { id: 1, text: "Learn Angular" },
     { id: 2, text: "Build an app" },
   ]);
-});
-
-// Hello World
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World");
 });
 
 app.listen(port, () => {

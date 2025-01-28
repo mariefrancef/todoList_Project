@@ -4,7 +4,7 @@
   "description": "To Do List",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "nodemon --exec npx ts-node src/index.ts"
   },
   "dependencies": {
     "body-parser": "^1.20.3",
