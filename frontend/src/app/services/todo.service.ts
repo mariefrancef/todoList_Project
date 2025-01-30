@@ -12,7 +12,7 @@ export class TodoService {
   constructor(private http: HttpClient) {}
 
   getTodos(): Observable<Todo[]> {
-    console.log('Fetching todos...');
+    //console.log('Fetching todos...');
     return this.http.get<Todo[]>(this.apiUrl);
   }
 

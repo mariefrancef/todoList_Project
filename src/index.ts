@@ -6,18 +6,18 @@ import todoRoutes from "./routes/todoRoutes";
 const app = express();
 const port = 3000;
 
-// Autoriser toutes les origines (ou spécifie localhost:4200 uniquement)
+// Allow frontend requests
 app.use(
   cors({
-    origin: "http://localhost:4200", // Autoriser les requêtes de ce domaine
-    methods: ["GET", "POST", "PUT", "DELETE"], // Autoriser les méthodes HTTP nécessaires
+    origin: "http://localhost:4200",
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allow HTTP methods
   })
 );
 
-// Middleware pour analyser le corps de la requête (JSON)
+// Middleware for analyse request body (JSON)
 app.use(bodyParser.json());
 
-// Route de test
+// Route test
 app.get("/", (req: Request, res: Response) => {
   res.send("Welcome to the Todo API!");
 });

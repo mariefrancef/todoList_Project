@@ -88,7 +88,7 @@ export class TodoListComponent implements OnInit {
         this.todoList = this.todoList.filter((todo) => !todo.completed);
         break;
       default:
-        this.getTodos(); // Réinitialise pour afficher toutes les tâches
+        this.getTodos(); // Reset to display all tasks
         break;
     }
   }

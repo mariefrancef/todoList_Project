@@ -7,7 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./todo-filter.component.scss'],
 })
 export class TodoFilterComponent {
-  selectedFilter: string = 'all'; // Par défaut, on affiche toutes les tâches
+  selectedFilter: string = 'all'; // By default all tasks are displayed
   @Output() filterChange = new EventEmitter<string>();
 
   onFilterChange(filter: string): void {

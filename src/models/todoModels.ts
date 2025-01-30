@@ -3,5 +3,5 @@ export interface Todo {
   title: string;
   description: string;
   completed: boolean;
-  isEditing?: boolean;
+  isEditing?: boolean; // This property is optional
 }
